@@ -8,11 +8,14 @@ FLAGS = -Wall -Wextra -Werror
 
 CC = gcc $(FLAGS)
 
-FILES = utils/list.c utils/list_two.c \
-		utils/wrmalloc.c utils/exit.c \
+FILES =  \
+		utils/lst/list.c utils/lst/list_two.c \
+		utils/lst/wrmalloc.c utils/exit.c \
+		\
 		utils/str/ft_strlen.c utils/str/is.c \
 		utils/str/split.c utils/str/atol.c \
 		utils/str/ft_strcmp.c \
+		\
 		operations/swap.c operations/push.c \
 		operations/rotate.c \
 		main.c parse.c
