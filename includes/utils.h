@@ -6,7 +6,7 @@
 /*   By: thjacque <thjacque@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:09:07 by thjacque          #+#    #+#             */
-/*   Updated: 2021/03/25 16:54:30 by thjacque         ###   ########lyon.fr   */
+/*   Updated: 2021/03/25 18:49:00 by thjacque         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,9 @@ t_list	*new_lst(void *data);
 void	lst_push_front(t_list **lst, t_list *elem);
 void	lst_push_back(t_list **lst, t_list *elem);
 t_list	*lst_get_last(t_list **lst);
-int	lst_size(t_list **lst);
+int		lst_size(t_list **lst);
+void	lst_clear(t_list **lst);
+t_list **lst_dup(t_list **lst);
 /*
 ** EXIT
 */

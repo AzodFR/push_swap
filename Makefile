@@ -18,6 +18,9 @@ FILES =  \
 		\
 		operations/swap.c operations/push.c \
 		operations/rotate.c \
+		\
+		sorting/is_sort.c sorting/micro_sort.c \
+		\
 		main.c parse.c print.c
 
 OBJ = $(addprefix $(SRC), $(FILES))

@@ -6,7 +6,7 @@
 /*   By: thjacque <thjacque@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:18:28 by thjacque          #+#    #+#             */
-/*   Updated: 2021/03/25 18:16:49 by thjacque         ###   ########lyon.fr   */
+/*   Updated: 2021/03/25 18:55:23 by thjacque         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # define ARGS_N "\e[91mNumber of args"
 # define ARGS_F "\e[91mArgument not well formated"
 # define SUCCESS "\e[92mSuccess"
+# define FAILED "\e[+1mFailed"
 # include "utils.h"
 
 typedef struct s_struct
@@ -30,6 +31,8 @@ typedef struct s_struct
 
 void	parse(char **av, t_struct *ps, int i, int j);
 void	print_stack(t_struct *ps, char *last);
+int		is_sort(t_struct *ps);
+void	micro_sort(t_struct *ps);
 /*
 ** OPERATIONS
 */

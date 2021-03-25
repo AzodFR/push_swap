@@ -6,7 +6,7 @@
 /*   By: thjacque <thjacque@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:26:39 by thjacque          #+#    #+#             */
-/*   Updated: 2021/03/25 16:40:00 by thjacque         ###   ########lyon.fr   */
+/*   Updated: 2021/03/25 18:47:57 by thjacque         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,17 @@ int	lst_size(t_list **lst)
 		i++;
 	}
 	return (i);
+}
+
+void	lst_clear(t_list **lst)
+{
+	t_list	*prev;
+
+	while (*lst)
+	{
+		prev = *lst;
+		*lst = (*lst)->next;
+		wrfree(prev);
+	}
+	*lst = NULL;
 }
