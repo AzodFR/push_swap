@@ -4,7 +4,7 @@ INCLUDES = includes/
 
 SRC = src/
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
 
 CC = gcc $(FLAGS)
 
@@ -18,7 +18,7 @@ FILES =  \
 		\
 		operations/swap.c operations/push.c \
 		operations/rotate.c \
-		main.c parse.c
+		main.c parse.c print.c
 
 OBJ = $(addprefix $(SRC), $(FILES))
 

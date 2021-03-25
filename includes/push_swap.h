@@ -6,7 +6,7 @@
 /*   By: thjacque <thjacque@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:18:28 by thjacque          #+#    #+#             */
-/*   Updated: 2021/03/25 17:01:40 by thjacque         ###   ########lyon.fr   */
+/*   Updated: 2021/03/25 18:16:49 by thjacque         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct s_struct
 
 
 void	parse(char **av, t_struct *ps, int i, int j);
+void	print_stack(t_struct *ps, char *last);
 /*
 ** OPERATIONS
 */
