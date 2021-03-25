@@ -20,6 +20,7 @@ FILES =  \
 		operations/rotate.c \
 		\
 		sorting/is_sort.c sorting/micro_sort.c \
+		sorting/mini_sort.c \
 		\
 		main.c parse.c print.c
 

@@ -40,6 +40,22 @@ static int	is_valid(char *s)
 	return (1);
 }
 
+int duplicate(t_list **lst)
+{
+	t_list *tmp;
+	t_list *tmp2;
+
+	tmp = *lst;
+	tmp2 = tmp->next;
+	while (tmp2)
+	{
+		if (tmp->content == tmp2->content)
+			return (1);
+		tmp2 = tmp2->next;
+	}
+	return (0);
+}
+
 void	parse(char **av, t_struct *ps, int i, int j)
 {
 	char	**part;
@@ -63,6 +79,8 @@ void	parse(char **av, t_struct *ps, int i, int j)
 				if (!is_valid(part[j]))
 					ft_exit(ARGS_F, 1);
 				lst_push_front(ps->lst_a, new_lst((void *)ft_atol(part[j])));
+				if (duplicate(ps->lst_a))
+					ft_exit(DUP, 1);
 			}
 		}
 	}

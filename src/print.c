@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <unistd.h>
 
 void	print_one(t_list **elem)
 {
@@ -30,23 +31,26 @@ void	print_stack(t_struct *ps, char *last)
 	t_list	*tmp;
 	t_list	*tmp2;
 
-	i = -1;
-	tmp = *(ps->lst_a);
-	tmp2 = *(ps->lst_b);
-	printf("\x1b[2J _____________________ _____________________\n");
-	printf("|\e[92m%-21s\e[0m|\e[93m%21s\e[0m|\n", "STACK", "TMP");
-	printf("|_____________________|_____________________|\n");
-	while (++i < ps->size)
+	if (ps->debug)
 	{
-		printf("|");
-		print_one(&tmp);
-		printf("|");
-		print_one(&tmp2);
-		printf("|\n");
+		i = -1;
+		tmp = *(ps->lst_a);
+		tmp2 = *(ps->lst_b);
+		printf("\x1b[2J _____________________ _____________________\n");
+		printf("|\e[92m%-21s\e[0m|\e[93m%21s\e[0m|\n", "STACK", "TMP");
+		printf("|_____________________|_____________________|\n");
+		while (++i < ps->size)
+		{
+			printf("|");
+			print_one(&tmp);
+			printf("|");
+			print_one(&tmp2);
+			printf("|\n");
+		}
+		printf("|_____________________ _____________________|\n");
 	}
-	printf("|_____________________ _____________________|\n");
-	printf("Last Operation: ");
 	if (ps->color)
-		printf("\e[95m");
-	printf("%s\e[0m\n", last);
+		printf("Last Operation: \e[95m%s\e[0m\n", last);
+	if (ps->debug)
+		usleep(1000000);
 }

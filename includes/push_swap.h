@@ -14,8 +14,10 @@
 # define PUSH_SWAP_H
 # define ARGS_N "\e[91mNumber of args"
 # define ARGS_F "\e[91mArgument not well formated"
+# define DUP "\e[91mDuplicate numbers"
 # define SUCCESS "\e[92mSuccess"
-# define FAILED "\e[+1mFailed"
+# define A_SORTED "\e[92mAlready sorted"
+# define FAILED "\e[91mFailed"
 # include "utils.h"
 
 typedef struct s_struct
@@ -32,7 +34,9 @@ typedef struct s_struct
 void	parse(char **av, t_struct *ps, int i, int j);
 void	print_stack(t_struct *ps, char *last);
 int		is_sort(t_struct *ps);
-void	micro_sort(t_struct *ps);
+int		micro_sort(t_struct *ps);
+int		mini_sort(t_struct *ps);
+int 	is_top_max(t_list **lst);
 /*
 ** OPERATIONS
 */
