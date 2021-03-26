@@ -51,6 +51,8 @@ void	print_stack(t_struct *ps, char *last)
 	}
 	if (ps->color)
 		printf("Last Operation: \e[95m%s\e[0m\n", last);
+	else
+		printf("%s\n", last);
 	if (ps->debug)
 		usleep(1000000);
 }

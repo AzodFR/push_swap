@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	rotate(t_list **lst)
+void	rotate(t_list **lst, t_struct *ps, int aff, int type)
 {
 	t_list	*tmp;
 
@@ -22,9 +22,16 @@ void	rotate(t_list **lst)
 	*lst = tmp->next;
 	tmp->next = NULL;
 	lst_push_back(lst, tmp);
+	if (aff)
+	{
+		if (type)
+			print_stack(ps, "ra");
+		else
+			print_stack(ps, "rb");
+	}
 }
 
-void	reverse_rotate(t_list **lst)
+void	reverse_rotate(t_list **lst, t_struct *ps, int aff, int type)
 {
 	t_list	*tmp;
 	t_list	*tmp2;
@@ -37,16 +44,23 @@ void	reverse_rotate(t_list **lst)
 		tmp2 = tmp2->next;
 	tmp2->next = NULL;
 	lst_push_front(lst, tmp);
+	if (aff)
+	{
+		if (type)
+			print_stack(ps, "rra");
+		else
+			print_stack(ps, "rrb");
+	}
 }
 
 void	double_rotate(t_struct **ps)
 {
-	rotate((*ps)->lst_a);
-	rotate((*ps)->lst_b);
+	rotate((*ps)->lst_a, *ps, 0, 0);
+	rotate((*ps)->lst_b, *ps, 0, 0);
 }
 
 void	double_rev_rotate(t_struct **ps)
 {
-	reverse_rotate((*ps)->lst_a);
-	reverse_rotate((*ps)->lst_b);
+	reverse_rotate((*ps)->lst_a, *ps, 0, 0);
+	reverse_rotate((*ps)->lst_b, *ps, 0, 0);
 }

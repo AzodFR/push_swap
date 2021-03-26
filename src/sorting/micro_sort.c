@@ -26,29 +26,12 @@ int is_max(t_list **lst, t_list *max)
 	return (1);
 }
 
-int micro_sort(t_struct *ps)
+void micro_sort(t_struct *ps)
 {
-	int i;
-
-	i = 0;
-
 	if (is_top_max(ps->lst_a))
-	{
-		reverse_rotate(ps->lst_a);
-		print_stack(ps, "rra");
-		i++;
-	}
+		reverse_rotate(ps->lst_a, ps, 1, 0);
 	if (is_max(ps->lst_a, (*ps->lst_a)->next))
-	{
-		reverse_rotate(ps->lst_a);
-		print_stack(ps, "rra");
-		i++;
-	}
+		reverse_rotate(ps->lst_a, ps, 1, 0);
 	if ((*ps->lst_a)->content > (*ps->lst_a)->next->content)
-	{
-		swap(ps->lst_a);
-		print_stack(ps, "sa");
-		i++;
-	}
-	return (i);
+		swap(ps->lst_a, ps, 1, 0);
 }

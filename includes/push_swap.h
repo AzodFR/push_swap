@@ -36,17 +36,17 @@ typedef struct s_struct
 void	parse(char **av, t_struct *ps, int i, int j);
 void	print_stack(t_struct *ps, char *last);
 int		is_sort(t_struct *ps);
-int		micro_sort(t_struct *ps);
-int		mini_sort(t_struct *ps);
+void		micro_sort(t_struct *ps);
+void		mini_sort(t_struct *ps);
 int 	is_top_max(t_list **lst);
 /*
 ** OPERATIONS
 */
-void	swap(t_list **lst);
+void	swap(t_list **lst, t_struct *ps, int aff, int type);
 void	double_swap(t_struct **ps);
-void	push(t_list **dest, t_list **src);
-void	rotate(t_list **lst);
+void	push(t_list **dest, t_list **src, t_struct *ps ,int type);
+void	rotate(t_list **lst, t_struct *ps, int aff, int type);
 void	double_rotate(t_struct **ps);
-void	reverse_rotate(t_list **lst);
+void	reverse_rotate(t_list **lst, t_struct *ps, int aff, int type);
 void	double_rev_rotate(t_struct **ps);
 #endif

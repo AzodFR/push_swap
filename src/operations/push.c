@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	push(t_list **dest, t_list **src)
+void	push(t_list **dest, t_list **src, t_struct *ps ,int type)
 {
 	t_list	*tmp;
 
@@ -21,4 +21,8 @@ void	push(t_list **dest, t_list **src)
 	tmp = new_lst((*src)->content);
 	(*src) = (*src)->next;
 	lst_push_front(dest, tmp);
+	if (type)
+		print_stack(ps, "pa");
+	else
+		print_stack(ps, "pb");
 }

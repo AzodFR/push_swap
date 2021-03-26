@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	swap(t_list **lst)
+void	swap(t_list **lst, t_struct *ps, int aff, int type)
 {
 	t_list	*tmp;
 
@@ -23,10 +23,17 @@ void	swap(t_list **lst)
 	(*lst)->next = tmp->next;
 	tmp->next = (*lst);
 	*lst = tmp;
+	if (aff)
+	{
+		if (type)
+			print_stack(ps, "sa");
+		else
+			print_stack(ps, "sb");
+	}
 }
 
 void	double_swap(t_struct **ps)
 {
-	swap((*ps)->lst_a);
-	swap((*ps)->lst_b);
+	swap((*ps)->lst_a, *ps, 0, 0);
+	swap((*ps)->lst_b, *ps, 0, 0);
 }

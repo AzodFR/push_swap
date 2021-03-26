@@ -28,56 +28,62 @@ int is_top_max(t_list **lst)
     return (1);
 }
 
-int mini_sort(t_struct *ps)
+void minis_sort2(t_struct *ps)
 {
-    int i;
-
-	push(ps->lst_b, ps->lst_a);
-	print_stack(ps, "pb");
-	push(ps->lst_b, ps->lst_a);
-	print_stack(ps, "pb");
-	i = 2;
-	i += micro_sort(ps);\
-	/*while (lst_size(ps->lst_b) > 0)
+	if ((*ps->lst_a)->content > (*ps->lst_a)->next->content )
 	{
-		push(ps->lst_a, ps->lst_b);
-		print_stack(ps, "pa");
-		i++;
+		if ((*ps->lst_a)->content < (*ps->lst_a)->next->next->content)
+			swap(ps->lst_a, ps, 1, 0);
+		else
+		{
+			reverse_rotate(ps->lst_a, ps, 1, 0);
+			swap(ps->lst_a, ps, 1, 0);
+			rotate(ps->lst_a, ps, 1, 0);
+			rotate(ps->lst_a, ps, 1, 0);
+		}
 	}
-	rotate(ps->lst_a);
-	print_stack(ps, "ra");
-	i++;*/
-	/*
-		if (!is_top_max(ps->lst_b))
+}
+
+void minis_sort3(t_struct *ps)
+{
+	if ((*ps->lst_a)->content > (*ps->lst_a)->next->content )
+	{
+		if ((*ps->lst_a)->content < (*ps->lst_a)->next->next->content)
+			swap(ps->lst_a, ps, 1, 0);
+		else if ((*ps->lst_a)->content < (*ps->lst_a)->next->next->next->content)
 		{
-			rotate(ps->lst_b);
-			print_stack(ps, "rb"); 
-			i++;
+			reverse_rotate(ps->lst_a, ps, 1, 0);
+			swap(ps->lst_a, ps, 1, 0);
+			rotate(ps->lst_a, ps, 1, 0);
+			rotate(ps->lst_a, ps, 1, 0);
 		}
-		push(ps->lst_a, ps->lst_b);
-		print_stack(ps, "pa");
-		i++;
-		if (is_top_max(ps->lst_a))
+		else
 		{
-			reverse_rotate(ps->lst_a);
-			print_stack(ps, "rra"); 
-			i++;
+
 		}
-		if ((*ps->lst_a)->content > (*ps->lst_a)->next->content)
-		{
-			swap(ps->lst_a);
-			print_stack(ps, "sa"); 
-			i++;
-		}
-		push(ps->lst_a, ps->lst_b);
-		print_stack(ps, "pa");
-			if ((*ps->lst_a)->content > (*ps->lst_a)->next->content)
-		{
-			swap(ps->lst_a);
-			print_stack(ps, "sa"); 
-			i++;
-		}
-		i++;
-	}*/
-    return (i);
+	}
+}
+
+void mini_sort(t_struct *ps)
+{
+
+	push(ps->lst_b, ps->lst_a, ps, 1);
+	push(ps->lst_b, ps->lst_a, ps, 1);
+	micro_sort(ps);
+	if (!is_top_max(ps->lst_b))
+		rotate(ps->lst_b, ps, 1, 1);
+	push(ps->lst_a, ps->lst_b, ps, 0);
+	if (is_top_max(ps->lst_a))
+		rotate(ps->lst_a, ps, 1, 0);
+	minis_sort2(ps);
+	if ((*ps->lst_b)->content > (*ps->lst_a)->next->content)
+	{
+		push(ps->lst_b, ps->lst_a, ps, 1);
+		swap(ps->lst_b, ps, 1, 1);
+		push(ps->lst_a, ps->lst_b, ps, 0);
+		swap(ps->lst_a, ps, 1, 0);
+	}
+	push(ps->lst_a, ps->lst_b, ps, 0);
+	micro_sort(ps);
+	//minis_sort2(ps);
 }
