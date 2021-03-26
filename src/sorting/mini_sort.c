@@ -32,29 +32,52 @@ int mini_sort(t_struct *ps)
 {
     int i;
 
-    push(ps->lst_b, ps->lst_a);
-    print_stack(ps, "pb");
-    push(ps->lst_b, ps->lst_a);
-    print_stack(ps, "pb");
-    i = 2;
-    i += micro_sort(ps);
-    if (!is_top_max(ps->lst_b))
-    {
-        rotate(ps->lst_b);
-        print_stack(ps, "rb"); 
-        i++;
-    }
-    push(ps->lst_a, ps->lst_b);
-    print_stack(ps, "pa");
-    i++;
-    if (is_top_max(ps->lst_a))
-    {
-        reverse_rotate(ps->lst_a);
-        print_stack(ps, "rra"); 
-        i++;
-    }
-    push(ps->lst_a, ps->lst_b);
-    print_stack(ps, "pa");
-    i++;
+	push(ps->lst_b, ps->lst_a);
+	print_stack(ps, "pb");
+	push(ps->lst_b, ps->lst_a);
+	print_stack(ps, "pb");
+	i = 2;
+	i += micro_sort(ps);\
+	/*while (lst_size(ps->lst_b) > 0)
+	{
+		push(ps->lst_a, ps->lst_b);
+		print_stack(ps, "pa");
+		i++;
+	}
+	rotate(ps->lst_a);
+	print_stack(ps, "ra");
+	i++;*/
+	/*
+		if (!is_top_max(ps->lst_b))
+		{
+			rotate(ps->lst_b);
+			print_stack(ps, "rb"); 
+			i++;
+		}
+		push(ps->lst_a, ps->lst_b);
+		print_stack(ps, "pa");
+		i++;
+		if (is_top_max(ps->lst_a))
+		{
+			reverse_rotate(ps->lst_a);
+			print_stack(ps, "rra"); 
+			i++;
+		}
+		if ((*ps->lst_a)->content > (*ps->lst_a)->next->content)
+		{
+			swap(ps->lst_a);
+			print_stack(ps, "sa"); 
+			i++;
+		}
+		push(ps->lst_a, ps->lst_b);
+		print_stack(ps, "pa");
+			if ((*ps->lst_a)->content > (*ps->lst_a)->next->content)
+		{
+			swap(ps->lst_a);
+			print_stack(ps, "sa"); 
+			i++;
+		}
+		i++;
+	}*/
     return (i);
 }

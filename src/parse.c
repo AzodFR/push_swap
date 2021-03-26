@@ -6,7 +6,7 @@
 /*   By: thjacque <thjacque@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 13:04:50 by thjacque          #+#    #+#             */
-/*   Updated: 2021/03/25 17:02:17 by thjacque         ###   ########lyon.fr   */
+/*   Updated: 2021/03/26 10:52:49 by thjacque         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ int duplicate(t_list **lst)
 
 	tmp = *lst;
 	tmp2 = tmp->next;
+	if ((long)tmp->content > 2147483647 || (long)tmp->content < -2147483648)
+		ft_exit(LIMIT, 1);
 	while (tmp2)
 	{
 		if (tmp->content == tmp2->content)

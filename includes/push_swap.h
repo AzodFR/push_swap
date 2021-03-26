@@ -6,7 +6,7 @@
 /*   By: thjacque <thjacque@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:18:28 by thjacque          #+#    #+#             */
-/*   Updated: 2021/03/25 18:55:23 by thjacque         ###   ########lyon.fr   */
+/*   Updated: 2021/03/26 13:10:08 by thjacque         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,14 @@
 # define SUCCESS "\e[92mSuccess"
 # define A_SORTED "\e[92mAlready sorted"
 # define FAILED "\e[91mFailed"
+# define LIMIT "\e[91mINT_LIMITS"
 # include "utils.h"
 
 typedef struct s_struct
 {
 	t_list		**lst_a;
 	t_list		**lst_b;
+	int			*sorted;
 	int			size;
 	int			debug;
 	int			color;
