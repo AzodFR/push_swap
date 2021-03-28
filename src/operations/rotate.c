@@ -53,14 +53,18 @@ void	reverse_rotate(t_list **lst, t_struct *ps, int aff, int type)
 	}
 }
 
-void	double_rotate(t_struct **ps)
+void	double_rotate(t_struct **ps, int aff)
 {
 	rotate((*ps)->lst_a, *ps, 0, 0);
 	rotate((*ps)->lst_b, *ps, 0, 0);
+	if (aff)
+			print_stack(*ps, "rr");
 }
 
-void	double_rev_rotate(t_struct **ps)
+void	double_rev_rotate(t_struct **ps, int aff)
 {
 	reverse_rotate((*ps)->lst_a, *ps, 0, 0);
 	reverse_rotate((*ps)->lst_b, *ps, 0, 0);
+	if (aff)
+			print_stack(*ps, "rrr");
 }

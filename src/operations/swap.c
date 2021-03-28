@@ -32,8 +32,10 @@ void	swap(t_list **lst, t_struct *ps, int aff, int type)
 	}
 }
 
-void	double_swap(t_struct **ps)
+void	double_swap(t_struct **ps, int aff)
 {
 	swap((*ps)->lst_a, *ps, 0, 0);
 	swap((*ps)->lst_b, *ps, 0, 0);
+	if (aff)
+		print_stack(*ps, "ss");
 }

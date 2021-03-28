@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-static void	init_struct(t_struct *ps)
+void	init_struct(t_struct *ps)
 {
 	ps->lst_a = wrmalloc(sizeof(t_list *));
 	*ps->lst_a = NULL;
@@ -23,7 +23,7 @@ static void	init_struct(t_struct *ps)
 	*ps->lst_b = NULL;
 }
 
-static int	is_valid(char *s)
+int	is_valid(char *s)
 {
 	int	i;
 
@@ -80,7 +80,7 @@ void	parse(char **av, t_struct *ps, int i, int j)
 			{
 				if (!is_valid(part[j]))
 					ft_exit(ARGS_F, 1);
-				lst_push_front(ps->lst_a, new_lst((void *)ft_atol(part[j])));
+				lst_push_back(ps->lst_a, new_lst((void *)ft_atol(part[j])));
 				if (duplicate(ps->lst_a))
 					ft_exit(DUP, 1);
 			}

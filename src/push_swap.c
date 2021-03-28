@@ -22,9 +22,7 @@ int	main(int ac, char **av)
 	parse(av, ps, 0, 0);
 	if (is_sort(ps))
 		ft_exit(A_SORTED, 0);
-	else if (ps->size <= 3)
-		micro_sort(ps);
-	else if (ps->size == 5)
+	else if (ps->size <= 5)
 		mini_sort(ps);
 	else
 		ft_exit(FAILED, 1);
