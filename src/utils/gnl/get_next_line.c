@@ -16,7 +16,7 @@ void	ft_strdel(char **str)
 {
 	if (*str)
 	{
-		free(*str);
+		wrfree(*str);
 		*str = NULL;
 	}
 }
@@ -31,13 +31,12 @@ char	*joinnfree(char *str1, char *str2)
 		return (NULL);
 	i = ft_strlen(str1);
 	j = ft_strlen(str2);
-	if (!(newstr = malloc((i + j + 1) * sizeof(char))))
-		return (NULL);
+	newstr = wrmalloc((i + j + 1) * sizeof(char));
 	j = -1;
 	ft_strcpy(newstr, str1);
 	while (str2[++j])
 		newstr[i++] = str2[j];
-	free(str1);
+	wrfree(str1);
 	newstr[i] = 0;
 	return (newstr);
 }
@@ -52,20 +51,19 @@ char	*forward(char *rest, char **line, int *eof)
 	{
 		while (rest[i] != '\n' && rest[i])
 			i++;
+		if (i == 0)
+			*line = ft_strdup("");
+		else
+			*line = ft_substr(rest, 0, i);
 		if (rest[i] == '\n')
 		{
-			*line = (i == 0) ? ft_strdup("") : ft_substr(rest, 0, i);
 			tmp = ft_strdup(rest + i + 1);
 			ft_strcpy(rest, tmp);
 			ft_strdel(&tmp);
 			return (*line);
 		}
-		else
-		{
-			*line = (i == 0) ? ft_strdup("") : ft_substr(rest, 0, i);
-			*eof = 1;
+		else if (++(*eof))
 			return (*line);
-		}
 	}
 	*eof = 1;
 	return (ft_strdup(""));
@@ -76,24 +74,26 @@ char	*get_actual_line(char *buffer, char **rest, int fd)
 	int		i;
 	char	*temp;
 
-	while ((i = read(fd, buffer, 3)) != 0)
+	i = read(fd, buffer, 3);
+	while (i != 0)
 	{
 		if (i < 0)
-			return ((char *)-1);
+			return ((char *)(-1));
 		if (!rest[fd])
-			if (!(rest[fd] = ft_strdup("")))
-				return ((char *)-1);
+			rest[fd] = ft_strdup("");
 		buffer[i] = 0;
-		if (!(temp = joinnfree(rest[fd], buffer)))
-			return ((char *)-1);
+		temp = joinnfree(rest[fd], buffer);
+		if (!temp)
+			return ((char *)(-1));
 		rest[fd] = temp;
 		if (ft_strchr(rest[fd], '\n'))
 			break ;
+		i = read(fd, buffer, 3);
 	}
 	return (rest[fd]);
 }
 
-int		get_next_line(int fd, char **line)
+int	get_next_line(int fd, char **line)
 {
 	static char		*rest[4096];
 	char			buffer[3 + 1];
@@ -106,7 +106,8 @@ int		get_next_line(int fd, char **line)
 			*line = NULL;
 		return (-1);
 	}
-	if ((rest[fd] = get_actual_line(buffer, rest, fd)) == (char *)-1)
+	rest[fd] = get_actual_line(buffer, rest, fd);
+	if (rest[fd] == (char *)(-1))
 	{
 		*line = NULL;
 		return (-1);

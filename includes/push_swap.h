@@ -33,11 +33,12 @@ typedef struct s_struct
 }				t_struct;
 
 
-void	parse(char **av, t_struct *ps, int i, int j);
+void	parse(char **av, t_struct *ps, int i);
+void	take_arg(char **part, t_struct *ps);
 void	init_struct(t_struct *ps);
 int	is_valid(char *s);
 int duplicate(t_list **lst);
-void	print_stack(t_struct *ps, char *last);
+void	print_stack(t_struct *ps, char *last, int i);
 int		is_sort(t_struct *ps);
 void		micro_sort(t_struct *ps);
 void		mini_sort(t_struct *ps);

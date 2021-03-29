@@ -40,15 +40,15 @@ int	is_valid(char *s)
 	return (1);
 }
 
-int duplicate(t_list **lst)
+int	duplicate(t_list **lst)
 {
-	t_list *tmp;
-	t_list *tmp2;
+	t_list	*tmp;
+	t_list	*tmp2;
 
 	tmp = *lst;
 	tmp2 = tmp->next;
 	if ((long)tmp->content > 2147483647 || (long)tmp->content < -2147483648)
-		ft_exit(LIMIT, 1);
+		ft_exit("Error", 1);
 	while (tmp2)
 	{
 		if (tmp->content == tmp2->content)
@@ -58,7 +58,22 @@ int duplicate(t_list **lst)
 	return (0);
 }
 
-void	parse(char **av, t_struct *ps, int i, int j)
+void	take_arg(char **part, t_struct *ps)
+{
+	int	j;
+
+	j = -1;
+	while (part[++j])
+	{
+		if (!is_valid(part[j]))
+			ft_exit("Error", 1);
+		lst_push_back(ps->lst_a, new_lst((void *)ft_atol(part[j])));
+		if (duplicate(ps->lst_a))
+			ft_exit("Error", 1);
+	}
+}
+
+void	parse(char **av, t_struct *ps, int i)
 {
 	char	**part;
 
@@ -74,16 +89,8 @@ void	parse(char **av, t_struct *ps, int i, int j)
 			ps->flag = 1;
 			part = ft_split(av[i], ' ');
 			if (!part[0])
-				ft_exit(ARGS_F, 1);
-			j = -1;
-			while (part[++j])
-			{
-				if (!is_valid(part[j]))
-					ft_exit(ARGS_F, 1);
-				lst_push_back(ps->lst_a, new_lst((void *)ft_atol(part[j])));
-				if (duplicate(ps->lst_a))
-					ft_exit(DUP, 1);
-			}
+				ft_exit("Error", 1);
+			take_arg(part, ps);
 		}
 	}
 	ps->size = lst_size(ps->lst_a);

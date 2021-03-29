@@ -14,13 +14,7 @@
 
 void	ft_exit(char *string, int code)
 {
-	if (code)
-	{
-		printf("\e[96mpush\e[0m_\e[93mswap\e[0m");
-		if (code)
-			printf("_\e[91merror");
-		printf(": %s\e[0m\n", string);
-	}
+	printf("%s\n", string);
 	wrdestroy();
 	exit(code);
 }

@@ -26,9 +26,9 @@ void	swap(t_list **lst, t_struct *ps, int aff, int type)
 	if (aff)
 	{
 		if (type)
-			print_stack(ps, "sa");
+			print_stack(ps, "sa", -1);
 		else
-			print_stack(ps, "sb");
+			print_stack(ps, "sb", -1);
 	}
 }
 
@@ -37,5 +37,5 @@ void	double_swap(t_struct **ps, int aff)
 	swap((*ps)->lst_a, *ps, 0, 0);
 	swap((*ps)->lst_b, *ps, 0, 0);
 	if (aff)
-		print_stack(*ps, "ss");
+		print_stack(*ps, "ss", -1);
 }

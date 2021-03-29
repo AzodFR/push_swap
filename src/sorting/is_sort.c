@@ -14,10 +14,9 @@
 
 int	is_sort(t_struct *ps)
 {
-	t_list *tmp;
+	t_list	*tmp;
 
 	tmp = *(ps->lst_a);
-
 	if (lst_size(ps->lst_b))
 		return (0);
 	while (tmp->next)

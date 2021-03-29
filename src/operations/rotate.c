@@ -25,9 +25,9 @@ void	rotate(t_list **lst, t_struct *ps, int aff, int type)
 	if (aff)
 	{
 		if (type)
-			print_stack(ps, "ra");
+			print_stack(ps, "ra", -1);
 		else
-			print_stack(ps, "rb");
+			print_stack(ps, "rb", -1);
 	}
 }
 
@@ -47,9 +47,9 @@ void	reverse_rotate(t_list **lst, t_struct *ps, int aff, int type)
 	if (aff)
 	{
 		if (type)
-			print_stack(ps, "rra");
+			print_stack(ps, "rra", -1);
 		else
-			print_stack(ps, "rrb");
+			print_stack(ps, "rrb", -1);
 	}
 }
 
@@ -58,7 +58,7 @@ void	double_rotate(t_struct **ps, int aff)
 	rotate((*ps)->lst_a, *ps, 0, 0);
 	rotate((*ps)->lst_b, *ps, 0, 0);
 	if (aff)
-			print_stack(*ps, "rr");
+		print_stack(*ps, "rr", -1);
 }
 
 void	double_rev_rotate(t_struct **ps, int aff)
@@ -66,5 +66,5 @@ void	double_rev_rotate(t_struct **ps, int aff)
 	reverse_rotate((*ps)->lst_a, *ps, 0, 0);
 	reverse_rotate((*ps)->lst_b, *ps, 0, 0);
 	if (aff)
-			print_stack(*ps, "rrr");
+		print_stack(*ps, "rrr", -1);
 }

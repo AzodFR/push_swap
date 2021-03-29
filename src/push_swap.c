@@ -17,17 +17,17 @@ int	main(int ac, char **av)
 	t_struct	*ps;
 
 	if (ac < 2)
-		ft_exit(ARGS_N, 1);
+		ft_exit("Error", 1);
 	ps = wrmalloc(sizeof(t_struct));
-	parse(av, ps, 0, 0);
+	parse(av, ps, 0);
 	if (is_sort(ps))
-		ft_exit(A_SORTED, 0);
+		ft_exit("Error", 0);
 	else if (ps->size <= 5)
 		mini_sort(ps);
 	else
-		ft_exit(FAILED, 1);
-	if (is_sort(ps))
-		ft_exit(SUCCESS, 0);
-	ft_exit(FAILED, 1);
+		ft_exit("Error", 1);
+	if (!is_sort(ps))
+		ft_exit("Error", 1);
+	wrdestroy();
 	return (0);
 }

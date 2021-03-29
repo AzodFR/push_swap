@@ -25,15 +25,14 @@ void	print_one(t_list **elem)
 		(*elem) = (*elem)->next;
 }
 
-void	print_stack(t_struct *ps, char *last)
+void	print_stack(t_struct *ps, char *last, int i)
 {
-	int		i;
 	t_list	*tmp;
 	t_list	*tmp2;
 
 	if (ps->debug)
 	{
-		i = -1;
+		usleep(1000000);
 		tmp = *(ps->lst_a);
 		tmp2 = *(ps->lst_b);
 		printf("\x1b[2J _____________________ _____________________\n");
@@ -53,6 +52,4 @@ void	print_stack(t_struct *ps, char *last)
 		printf("Last Operation: \e[95m%s\e[0m\n", last);
 	else
 		printf("%s\n", last);
-	if (ps->debug)
-		usleep(1000000);
 }

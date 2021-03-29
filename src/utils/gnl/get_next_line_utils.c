@@ -11,7 +11,6 @@ char	*ft_strchr(char *s, char c)
 	return (NULL);
 }
 
-
 char	*ft_strcpy(char *dest, char *src)
 {
 	int		i;
@@ -29,8 +28,7 @@ char	*ft_strdup(char *s)
 	int		i;
 
 	i = -1;
-	if (!(ptr = (char*)malloc((ft_strlen(s) + 1) * sizeof(char))))
-		return (NULL);
+	ptr = wrmalloc((ft_strlen(s) + 1) * sizeof(char));
 	while (s[++i])
 		ptr[i] = s[i];
 	ptr[i] = 0;
@@ -51,8 +49,7 @@ char	*ft_substr(char *str, unsigned int start, unsigned int len)
 	count = start - j;
 	if (count > len)
 		count = len;
-	if (!(newstr = malloc((count + 1) * sizeof(char))))
-		return (NULL);
+	newstr = wrmalloc((count + 1) * sizeof(char));
 	while (len--)
 		newstr[i++] = str[start++];
 	newstr[i] = 0;

@@ -18,7 +18,7 @@ FILES =  \
 		utils/str/split.c utils/str/atol.c \
 		utils/str/ft_strcmp.c \
 		\
-		utils/get_info.c  utils/exit.c \
+		utils/get_info.c utils/get_info2.c utils/exit.c \
 		\
 		operations/swap.c operations/push.c \
 		operations/rotate.c \
