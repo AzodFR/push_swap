@@ -105,6 +105,9 @@ int	main(int ac, char **av)
 	}
 	if (is_sort(ps))
 		ft_exit("OK", 0);
+	ps->debug = 1;
+	print_stack(ps, "NULL", -1);
+	printf("%d -- %d\n", lst_size(ps->lst_a), lst_size(ps->lst_b));
 	ft_exit("KO", 1);
 	return (0);
 }

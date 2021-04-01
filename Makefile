@@ -19,12 +19,13 @@ FILES =  \
 		utils/str/ft_strcmp.c \
 		\
 		utils/get_info.c utils/get_info2.c utils/exit.c \
+		utils/sorting_ref.c \
 		\
 		operations/swap.c operations/push.c \
 		operations/rotate.c \
 		\
 		sorting/is_sort.c \
-		sorting/little_algo.c  \
+		sorting/little_algo.c  sorting/algo.c\
 		\
 		parse.c print.c 
 

@@ -25,7 +25,18 @@ int	main(int ac, char **av)
 	else if (ps->size <= 5)
 		mini_sort(ps);
 	else
-		ft_exit("Error", 1);
+	{
+		ps->min = sort_long_tab(ps);
+		ps->increment = define_plages(ps);
+		ps->push = ps->increment;
+		ps->start = ps->min[0];
+		ps->end = ps->min[ps->increment];
+		empty_stack_a(ps, 0);
+		if (!(fill_sort_stack_b(ps)))
+			ft_exit("Error sort", 1);
+	}
+	/*ps->debug = 1;
+	print_stack(ps, "LAST", -1);*/
 	if (!is_sort(ps))
 		ft_exit("Error", 1);
 	wrdestroy();

@@ -44,3 +44,20 @@ t_list	*get_at_pos(t_list **lst, int n)
 		return (tmp);
 	return (NULL);
 }
+
+int get_pos(t_list **lst, long n)
+{
+	t_list *tmp;
+	int i;
+
+	tmp = *lst;
+	i = 0;
+	while (tmp)
+	{
+		if ((long)tmp->content == n)
+			return (i);
+		i++;
+		tmp = tmp->next;
+	}
+	return (-1);
+}

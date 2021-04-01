@@ -19,6 +19,7 @@
 # define A_SORTED "\e[92mAlready sorted"
 # define FAILED "\e[91mFailed"
 # define LIMIT "\e[91mINT_LIMITS"
+# define IMPOSSIBLE -36666
 # include "utils.h"
 
 typedef struct s_struct
@@ -30,18 +31,28 @@ typedef struct s_struct
 	int			debug;
 	int			color;
 	int			flag;
+	long			*min;
+	int			increment;
+	long		start;
+	long		end;
+	int			push;
 }				t_struct;
 
 
 void	parse(char **av, t_struct *ps, int i);
 void	take_arg(char **part, t_struct *ps);
 void	init_struct(t_struct *ps);
-int	is_valid(char *s);
 int duplicate(t_list **lst);
 void	print_stack(t_struct *ps, char *last, int i);
-int		is_sort(t_struct *ps);
-void		micro_sort(t_struct *ps);
-void		mini_sort(t_struct *ps);
+int		fill_sort_stack_b(t_struct *ps);
+void	empty_stack_a(t_struct *ps, int p);
+long		raise_plage(t_struct *ps);
+long			find_num_plage(t_struct *ps, long start, long end);
+
+/*
+** INFOS
+*/
+int	is_valid(char *s);
 int 	is_top_max(t_list **lst);
 int is_max(t_list **lst, t_list *max);
 int is_min(t_list **lst, t_list *min);
@@ -50,7 +61,15 @@ long get_min(t_list **lst);
 int get_min_pos(t_list **lst);
 long get_middle(t_list **lst);
 t_list *get_at_pos(t_list **lst, int n);
+int get_pos(t_list **lst, long n);
+int		is_sort(t_struct *ps);
+long *sort_long_tab(t_struct *ps);
+int			define_plages(t_struct *ps);
+/*
+** ALGOS
+*/
 void mini_sort(t_struct *ps);
+void		micro_sort(t_struct *ps);
 /*
 ** OPERATIONS
 */
