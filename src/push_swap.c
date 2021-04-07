@@ -22,7 +22,7 @@ int	define_chunk(int size)
 		return (20);
 	if (size >= 100 && size <= 300)
 		return (35);
-	return (50);
+	return (47);
 }
 
 int	main(int ac, char **av)
