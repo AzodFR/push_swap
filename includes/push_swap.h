@@ -32,7 +32,7 @@ typedef struct s_struct
 	int			color;
 	int			flag;
 	long			*min;
-	int			increment;
+	int			chunck;
 	long		start;
 	long		end;
 	int			push;
@@ -42,12 +42,10 @@ typedef struct s_struct
 void	parse(char **av, t_struct *ps, int i);
 void	take_arg(char **part, t_struct *ps);
 void	init_struct(t_struct *ps);
-int duplicate(t_list **lst);
+int duplicate(t_list **lst, long n);
 void	print_stack(t_struct *ps, char *last, int i);
-int		fill_sort_stack_b(t_struct *ps);
-void	empty_stack_a(t_struct *ps, int p);
-long		raise_plage(t_struct *ps);
-long			find_num_plage(t_struct *ps, long start, long end);
+void	empty_chunk_a(t_struct *ps);
+void	fill_sorted_a(t_struct *ps);
 
 /*
 ** INFOS
@@ -63,8 +61,7 @@ long get_middle(t_list **lst);
 t_list *get_at_pos(t_list **lst, int n);
 int get_pos(t_list **lst, long n);
 int		is_sort(t_struct *ps);
-long *sort_long_tab(t_struct *ps);
-int			define_plages(t_struct *ps);
+long *sort_long_tab(t_struct *ps, int i);
 /*
 ** ALGOS
 */

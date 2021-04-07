@@ -13,12 +13,14 @@
 #include "push_swap.h"
 #include <unistd.h>
 
-void	print_one(t_list **elem)
+void	print_one(t_list **elem, long start, long end)
 {
 	int	size;
 
 	size = 0;
-	if (*elem)
+	if (*elem && (long)(*elem)->content >= start && (long)(*elem)->content <= end)
+		size = printf("\e[92m%ld", (long)(*elem)->content) - 5;
+	else if (*elem)
 		size = printf("%ld", (long)(*elem)->content);
 	printf("%*s", 21 - size, " ");
 	if (*elem)
@@ -32,7 +34,7 @@ void	print_stack(t_struct *ps, char *last, int i)
 
 	if (ps->debug)
 	{
-		usleep(1000000);
+		usleep(500000);
 		tmp = *(ps->lst_a);
 		tmp2 = *(ps->lst_b);
 		printf("\x1b[2J _____________________ _____________________\n");
@@ -41,10 +43,10 @@ void	print_stack(t_struct *ps, char *last, int i)
 		while (++i < ps->size)
 		{
 			printf("|");
-			print_one(&tmp);
-			printf("|");
-			print_one(&tmp2);
-			printf("|\n");
+			print_one(&tmp, ps->start, ps->end);
+			printf("\e[0m|");
+			print_one(&tmp2, ps->start, ps->end);
+			printf("\e[0m|\n");
 		}
 		printf("|_____________________ _____________________|\n");
 	}

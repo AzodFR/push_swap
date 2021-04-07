@@ -12,6 +12,19 @@
 
 #include "push_swap.h"
 
+int	define_chunk(int size)
+{
+	if (size <= 10)
+		return (5);
+	if (size >= 10 && size <= 50)
+		return (10);
+	if ((size >= 50 && size <= 100) || size <= 50)
+		return (20);
+	if (size >= 100 && size <= 300)
+		return (35);
+	return (50);
+}
+
 int	main(int ac, char **av)
 {
 	t_struct	*ps;
@@ -21,22 +34,19 @@ int	main(int ac, char **av)
 	ps = wrmalloc(sizeof(t_struct));
 	parse(av, ps, 0);
 	if (is_sort(ps))
-		ft_exit("Error", 0);
+		ft_exit("", 0);
 	else if (ps->size <= 5)
 		mini_sort(ps);
 	else
 	{
-		ps->min = sort_long_tab(ps);
-		ps->increment = define_plages(ps);
-		ps->push = ps->increment;
+		ps->min = sort_long_tab(ps, -1);
+		ps->chunck = define_chunk(ps->size);
 		ps->start = ps->min[0];
-		ps->end = ps->min[ps->increment];
-		empty_stack_a(ps, 0);
-		if (!(fill_sort_stack_b(ps)))
-			ft_exit("Error sort", 1);
+		ps->end = ps->min[ps->chunck - 1];
+		ps->push = ps->chunck;
+		empty_chunk_a(ps);
+		fill_sorted_a(ps);
 	}
-	/*ps->debug = 1;
-	print_stack(ps, "LAST", -1);*/
 	if (!is_sort(ps))
 		ft_exit("Error", 1);
 	wrdestroy();

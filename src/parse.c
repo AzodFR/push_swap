@@ -40,20 +40,18 @@ int	is_valid(char *s)
 	return (1);
 }
 
-int	duplicate(t_list **lst)
+int	duplicate(t_list **lst, long n)
 {
 	t_list	*tmp;
-	t_list	*tmp2;
 
-	tmp = *lst;
-	tmp2 = tmp->next;
-	if ((long)tmp->content > 2147483647 || (long)tmp->content < -2147483648)
+	tmp = (*lst);
+	if (n > 2147483647 || n < -2147483648)
 		ft_exit("Error", 1);
-	while (tmp2)
+	while (tmp)
 	{
-		if (tmp->content == tmp2->content)
+		if ((long)tmp->content == n)
 			return (1);
-		tmp2 = tmp2->next;
+		tmp = tmp->next;
 	}
 	return (0);
 }
@@ -67,9 +65,9 @@ void	take_arg(char **part, t_struct *ps)
 	{
 		if (!is_valid(part[j]))
 			ft_exit("Error", 1);
-		lst_push_back(ps->lst_a, new_lst((void *)ft_atol(part[j])));
-		if (duplicate(ps->lst_a))
+		if (duplicate(ps->lst_a, ft_atol(part[j])))
 			ft_exit("Error", 1);
+		lst_push_back(ps->lst_a, new_lst((void *)ft_atol(part[j])));
 	}
 }
 

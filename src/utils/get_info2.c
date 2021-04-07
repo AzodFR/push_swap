@@ -45,10 +45,10 @@ t_list	*get_at_pos(t_list **lst, int n)
 	return (NULL);
 }
 
-int get_pos(t_list **lst, long n)
+int	get_pos(t_list **lst, long n)
 {
-	t_list *tmp;
-	int i;
+	t_list	*tmp;
+	int		i;
 
 	tmp = *lst;
 	i = 0;

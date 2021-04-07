@@ -7,7 +7,7 @@ int	is_max(t_list **lst, t_list *max)
 	tmp = *lst;
 	while (tmp)
 	{
-		if (tmp != max && tmp->content > max->content)
+		if (tmp != max && (long)tmp->content > (long)max->content)
 			return (0);
 		tmp = tmp->next;
 	}
@@ -21,7 +21,7 @@ int	is_min(t_list **lst, t_list *min)
 	tmp = *lst;
 	while (tmp)
 	{
-		if (tmp != min && tmp->content < min->content)
+		if (tmp != min && (long)tmp->content < (long)min->content)
 			return (0);
 		tmp = tmp->next;
 	}

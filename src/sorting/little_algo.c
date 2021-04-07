@@ -21,7 +21,7 @@ int	is_top_max(t_list **lst)
 	tmp2 = tmp->next;
 	while (tmp2)
 	{
-		if (tmp->content < tmp2->content)
+		if ((long)tmp->content < (long)tmp2->content)
 			return (0);
 		tmp2 = tmp2->next;
 	}
@@ -34,7 +34,7 @@ void	micro_sort(t_struct *ps)
 		reverse_rotate(ps->lst_a, ps, 1, 1);
 	if (is_max(ps->lst_a, (*ps->lst_a)->next))
 		reverse_rotate(ps->lst_a, ps, 1, 1);
-	if ((*ps->lst_a)->content > (*ps->lst_a)->next->content)
+	if ((long)(*ps->lst_a)->content > (long)(*ps->lst_a)->next->content)
 		swap(ps->lst_a, ps, 1, 1);
 }
 
