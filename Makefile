@@ -70,4 +70,7 @@ fclean: clean
 	@$(RM) $(NAME) $(CHECKER)
 	@printf "$(NAME) [\033[31mX\033[0m]\n"
 
+slow: fclean
+	
+
 re : fclean all

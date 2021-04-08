@@ -95,6 +95,8 @@ int	main(int ac, char **av)
 	int			ret;
 	t_struct	*ps;
 
+	if (ac < 2)
+		return (0);
 	ps = wrmalloc(sizeof(t_struct));
 	fd = get_param(ac, 0, av, ps);
 	ret = get_next_line(fd, &line);
@@ -105,9 +107,6 @@ int	main(int ac, char **av)
 	}
 	if (is_sort(ps))
 		ft_exit("OK", 0);
-	ps->debug = 1;
-	print_stack(ps, "NULL", -1);
-	printf("%d -- %d\n", lst_size(ps->lst_a), lst_size(ps->lst_b));
 	ft_exit("KO", 1);
 	return (0);
 }

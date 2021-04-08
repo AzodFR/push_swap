@@ -19,7 +19,7 @@ int	define_chunk(int size)
 	if (size >= 10 && size <= 50)
 		return (10);
 	if ((size >= 50 && size <= 100) || size <= 50)
-		return (20);
+		return (17);
 	if (size >= 100 && size <= 300)
 		return (35);
 	return (47);
@@ -40,9 +40,10 @@ int	main(int ac, char **av)
 	else
 	{
 		ps->min = sort_long_tab(ps, -1);
+		ps->min[ps->size] = ps->min[ps->size - 1] + 1;
 		ps->chunck = define_chunk(ps->size);
 		ps->start = ps->min[0];
-		ps->end = ps->min[ps->chunck - 1];
+		ps->end = ps->min[ps->chunck];
 		ps->push = ps->chunck;
 		empty_chunk_a(ps);
 		fill_sorted_a(ps);

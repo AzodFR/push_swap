@@ -15,10 +15,14 @@
 
 void	print_one(t_list **elem, long start, long end)
 {
-	int	size;
+	int		size;
+	long	n;
 
 	size = 0;
-	if (*elem && (long)(*elem)->content >= start && (long)(*elem)->content <= end)
+	n = 0;
+	if (*elem)
+		n = (long)(*elem)->content;
+	if (*elem && n >= start && n < end)
 		size = printf("\e[92m%ld", (long)(*elem)->content) - 5;
 	else if (*elem)
 		size = printf("%ld", (long)(*elem)->content);
@@ -34,7 +38,7 @@ void	print_stack(t_struct *ps, char *last, int i)
 
 	if (ps->debug)
 	{
-		usleep(500000);
+		usleep(SPEED * 100000);
 		tmp = *(ps->lst_a);
 		tmp2 = *(ps->lst_b);
 		printf("\x1b[2J _____________________ _____________________\n");
@@ -51,7 +55,7 @@ void	print_stack(t_struct *ps, char *last, int i)
 		printf("|_____________________ _____________________|\n");
 	}
 	if (ps->color)
-		printf("Last Operation: \e[95m%s\e[0m\n", last);
+		printf("\e[95m%s\e[0m\n", last);
 	else
 		printf("%s\n", last);
 }

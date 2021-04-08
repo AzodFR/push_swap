@@ -11,7 +11,7 @@ int	get_from_top(t_list **lst, long start, long end)
 	while (tmp && ++i < (lst_size(lst) / 2))
 	{
 		n = (long)tmp->content;
-		if (n >= start && n <= end)
+		if (n >= start && n < end)
 			return (++i);
 		tmp = tmp->next;
 	}
@@ -29,7 +29,7 @@ int	get_from_bot(t_list **lst, long start, long end)
 	while (tmp && --i >= (lst_size(lst) / 2))
 	{
 		n = (long)tmp->content;
-		if (n >= start && n <= end)
+		if (n >= start && n < end)
 			return (lst_size(lst) - i - 1);
 		tmp = get_at_pos(lst, i);
 	}
@@ -42,27 +42,19 @@ int	get_at_top(int top, int bot, t_struct *ps)
 		return (0);
 	else if (top == IMPOSSIBLE || (bot < top))
 	{
-		while ((long)get_at_pos(ps->lst_a, 0)->content < ps->start || (long)get_at_pos(ps->lst_a, 0)->content > ps->end)
+		while ((long)get_at_pos(ps->lst_a, 0)->content < ps->start
+			|| (long)get_at_pos(ps->lst_a, 0)->content >= ps->end)
 			reverse_rotate(ps->lst_a, ps, 1, 1);
 		push(ps->lst_b, ps->lst_a, ps, 0);
 	}
 	else if (bot == IMPOSSIBLE || (bot >= top))
 	{
-		while ((long)get_at_pos(ps->lst_a, 0)->content < ps->start || (long)get_at_pos(ps->lst_a, 0)->content > ps->end)
+		while ((long)get_at_pos(ps->lst_a, 0)->content < ps->start
+			|| (long)get_at_pos(ps->lst_a, 0)->content >= ps->end)
 			rotate(ps->lst_a, ps, 1, 1);
 		push(ps->lst_b, ps->lst_a, ps, 0);
 	}
 	return (1);
-}
-
-void	raise_plage(t_struct *ps)
-{
-	ps->start = ps->min[ps->push];
-	if (ps->push + ps->chunck >= ps->size)
-		ps->push = ps->size -1;
-	else
-		ps->push += ps->chunck;
-	ps->end = ps->min[ps->push];
 }
 
 void	empty_chunk_a(t_struct *ps)
@@ -81,11 +73,13 @@ void	empty_chunk_a(t_struct *ps)
 
 void	fill_sorted_a(t_struct *ps)
 {
-	t_list **b;
+	t_list	**b;
 
 	b = ps->lst_b;
 	while (lst_size(b))
 	{
+		ps->start = get_max(b);
+		ps->end = ps->start + 1;
 		if (get_pos(b, get_max(b)) <= lst_size(b) / 2)
 		{
 			while (!is_top_max(b))

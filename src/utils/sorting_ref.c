@@ -18,7 +18,7 @@ long	*sort_long_tab(t_struct *ps, int i)
 	t_list	*temp;
 	long	tmp;
 
-	min = wrmalloc(lst_size(ps->lst_a) * sizeof(long));
+	min = wrmalloc((lst_size(ps->lst_a) + 1) * sizeof(long));
 	temp = *(ps->lst_a);
 	while (temp)
 	{

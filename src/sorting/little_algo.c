@@ -72,3 +72,13 @@ void	mini_sort(t_struct *ps)
 	while (lst_size(ps->lst_b))
 		push(ps->lst_a, ps->lst_b, ps, 1);
 }
+
+void	raise_plage(t_struct *ps)
+{
+	ps->start = ps->min[ps->push];
+	if (ps->push + ps->chunck >= ps->size)
+		ps->push = ps->size;
+	else
+		ps->push += ps->chunck;
+	ps->end = ps->min[ps->push];
+}

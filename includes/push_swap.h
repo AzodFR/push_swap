@@ -12,13 +12,9 @@
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
-# define ARGS_N "\e[91mNumber of args"
-# define ARGS_F "\e[91mArgument not well formated"
-# define DUP "\e[91mDuplicate numbers"
-# define SUCCESS "\e[92mSuccess"
-# define A_SORTED "\e[92mAlready sorted"
-# define FAILED "\e[91mFailed"
-# define LIMIT "\e[91mINT_LIMITS"
+# ifndef SPEED
+#  define SPEED 1
+# endif
 # define IMPOSSIBLE -36666
 # include "utils.h"
 
@@ -42,31 +38,32 @@ typedef struct s_struct
 void	parse(char **av, t_struct *ps, int i);
 void	take_arg(char **part, t_struct *ps);
 void	init_struct(t_struct *ps);
-int duplicate(t_list **lst, long n);
+int		duplicate(t_list **lst, long n);
 void	print_stack(t_struct *ps, char *last, int i);
-void	empty_chunk_a(t_struct *ps);
-void	fill_sorted_a(t_struct *ps);
 
 /*
 ** INFOS
 */
-int	is_valid(char *s);
-int 	is_top_max(t_list **lst);
-int is_max(t_list **lst, t_list *max);
-int is_min(t_list **lst, t_list *min);
-long get_max(t_list **lst);
-long get_min(t_list **lst);
-int get_min_pos(t_list **lst);
-long get_middle(t_list **lst);
-t_list *get_at_pos(t_list **lst, int n);
-int get_pos(t_list **lst, long n);
+int		is_valid(char *s);
+int		is_top_max(t_list **lst);
+int		is_max(t_list **lst, t_list *max);
+int		is_min(t_list **lst, t_list *min);
+long	get_max(t_list **lst);
+long	get_min(t_list **lst);
+int		get_min_pos(t_list **lst);
+long	get_middle(t_list **lst);
+t_list	*get_at_pos(t_list **lst, int n);
+int		get_pos(t_list **lst, long n);
 int		is_sort(t_struct *ps);
-long *sort_long_tab(t_struct *ps, int i);
+long	*sort_long_tab(t_struct *ps, int i);
+void	raise_plage(t_struct *ps);
 /*
 ** ALGOS
 */
-void mini_sort(t_struct *ps);
-void		micro_sort(t_struct *ps);
+void	mini_sort(t_struct *ps);
+void	micro_sort(t_struct *ps);
+void	empty_chunk_a(t_struct *ps);
+void	fill_sorted_a(t_struct *ps);
 /*
 ** OPERATIONS
 */
